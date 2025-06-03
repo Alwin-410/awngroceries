@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ac42c3b1f7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <section id="front-page">
+        <video autoplay muted loop id="bg-video">
+            <source src="https://res.cloudinary.com/dyyp9nzim/video/upload/v1748862146/vcnr0mch3zhmj5yq4ui4.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="front-content">
+            <img src="https://res.cloudinary.com/dyyp9nzim/image/upload/v1748862140/pq3f2tqswn6jywsp6kt5.png" alt="Grocery Shop Logo" class="logo">
+            <h1>Awn Grocery Shop</h1>
+            <p>Welcome to Awn Grocery Shop – Fresh. Fast. Affordable.</p>
+            <button onclick="goToLogin()">Get Started</button>
+        </div>
+    </section>
+
+    <section id="login-page" style="display: none;">
+        <div class="login-container">
+            <h2>Login to Awn Grocery Shop</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="homepage" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+
+        <div class="sidebar" id="sidebar">
+            <div class="close-btn" onclick="toggleMenu()">
+                <i class="fas fa-times"></i>
+            </div>
+            <h3>Menu</h3>
+            <ul>
+                <li onclick="goToCategoryPage('Grains & Staples')">Grains & Staples</li>
+                <li onclick="goToCategoryPage('Fresh Items')">Fresh Items</li>
+                <li onclick="goToCategoryPage('Dairy Essentials')">Dairy Essentials</li>
+                <li onclick="goToCategoryPage('Snacks & Bakery')">Snacks & Bakery</li>
+                <li onclick="goToCategoryPage('Beverages')">Beverages</li>
+                <li onclick="goToCategoryPage('Personal Use')">Personal Use</li>
+                <li onclick="goToCategoryPage('Home Essentials')">Home Essentials</li>
+                <li onclick="goToCategoryPage('Others')">Others</li>
+                <li onclick="goToAboutUsPage()">About Us</li>
+            </ul>
+        </div>
+
+        <div id="carousel1" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel1" data-slide-to="1"></li>
+                <li data-target="#carousel1" data-slide-to="2"></li>
+                <li data-target="#carousel1" data-slide-to="3"></li>
+                <li data-target="#carousel1" data-slide-to="4"></li>
+                <li data-target="#carousel1" data-slide-to="5"></li>
+                <li data-target="#carousel1" data-slide-to="6"></li>
+                <li data-target="#carousel1" data-slide-to="7"></li>
+                <li data-target="#carousel1" data-slide-to="8"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://cdn.zeptonow.com/production/tr:w-640,ar-1216-760,pr-true,f-auto,q-80/inventory/banner/937f83b5-90a8-4d13-bb5a-47d33a3c4652.png" class="d-block w-100" alt="Indian Tea">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://img.freepik.com/premium-vector/special-black-tea-facebook-cover-template-design_685384-116.jpg" class="d-block w-100" alt="Black Tea">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.zeptonow.com/production/tr:w-640,ar-912-570,pr-true,f-auto,q-80/inventory/banner/fd85023e-12d6-4ec3-8a1e-2cc043c982fd.jpeg" class="d-block w-100" alt="Matcha Tea">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.zeptonow.com/production/tr:w-640,ar-1216-760,pr-true,f-auto,q-80/inventory/banner/aa899ee1-fdb5-4c4e-8022-2a78b8e9f659.png" class="d-block w-100" alt="Black Tea Ad">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://img.freepik.com/premium-psd/carrot-isolated-vegetable-banner_88281-3041.jpg" class="d-block w-100" alt="Instant Coffee">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://img.freepik.com/premium-vector/realistic-coconut-oil-poster-care-serum-liquid-hair-skin-care-product-glass-transparent-bottle-with-nut-pieces-splashes-marketing-promotional-banner-utter-vector-concept_176411-9401.jpg" class="d-block w-100" alt="Aloo Tikki">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cdn.zeptonow.com/production/tr:w-640,ar-1216-760,pr-true,f-auto,q-80/inventory/banner/aa472c3c-4250-46fe-9de0-a5c8f38e563f.png" class="d-block w-100" alt="Samosa">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://img.freepik.com/free-vector/coconut-milk-realistic-poster-with-advertising-natural-product-green-leaves-palm-tree-cracked-coconut-non-dairy-vegan-milk-bottle-illustration_1284-31426.jpg" class="d-block w-100" alt="Indian Snacks">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://img.freepik.com/free-vector/hand-drawn-wheat-background_23-2147736622.jpg" class="d-block w-100" alt="Butterfly Pea Tea">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+        <div class="categories">
+            <h2>Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category" onclick="goToCategoryPage('Grains & Staples')">
+                    <img src="https://img.freepik.com/free-photo/stashed-flour-used-cooking_23-2149517175.jpg" alt="Grains & Staples">
+                    <p>Grains & Staples</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Fresh Items')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-400,ar-3000-3000,pr-true,f-auto,q-80/cms/product_variant/f35152f8-31b1-4450-ae76-fe0f8893005a/Banana-Robusta.jpeg" alt="Fresh Items">
+                    <p>Fresh Items</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Dairy Essentials')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1200-1200,pr-true,f-auto,q-80/cms/product_variant/e15c0b10-0367-4675-a5ab-6da2abf9bee1/Amul-Salted-Butter.jpeg" alt="Dairy Essentials">
+                    <p>Dairy Essentials</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Snacks & Bakery')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1021-1021,pr-true,f-auto,q-80/cms/product_variant/5f134c5a-96e7-4a31-95be-aa3958d768c1/Lay-s-India-s-Magic-Masala-Potato-Chips.jpeg" alt="Snacks & Bakery">
+                    <p>Snacks & Bakery</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Beverages')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1500-1500,pr-true,f-auto,q-80/cms/product_variant/537e5f0a-30a9-4bc3-88b1-259c63a48674/Pluckk-Fresh-Mango-Fruit-Juice.jpeg" alt="Beverages">
+                    <p>Beverages</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Personal Use')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-600,ar-600-600,pr-true,f-auto,q-80/cms/product_variant/d64f6a34-7886-45bd-a817-aa373215c625/Mamaearth-Vitamin-C-Moisturizing-Lotion-Soap.jpg" alt="Personal Use">
+                    <p>Personal Use</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Home Essentials')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1500-1500,pr-true,f-auto,q-80/cms/product_variant/5f274602-7ec9-4461-9391-ad48fa0b6ed46679/Vim-Dishwash-Bar-Tub-Lemon-500-g-Combo.jpg" alt="Home Essentials">
+                    <p>Home Essentials</p>
+                </div>
+                <div class="category" onclick="goToCategoryPage('Others')">
+                    <img src="https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1500-1500,pr-true,f-auto,q-80/cms/product_variant/55dc6a1a-7d8a-4fb3-8712-0658599877c5/Duracell-Ultra-Alkaline-AAA-Batteries-Pack-Of-8-High-Drain-Devices-Digital-Camera-Toys-Electric-Toothbrush.jpg" alt="Others">
+                    <p>Others</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="category-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="back-btn" onclick="goToHomepage()">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-cat" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-cat" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="category-products">
+            <h2 id="category-title"></h2>
+            <div class="products" id="products"></div>
+        </div>
+    </section>
+
+    <section id="cart-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-cart" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-cart" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="cart">
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <div id="cart-total">Total: $0</div>
+            <button onclick="proceedOrder()">Proceed to Checkout</button>
+            <button onclick="goToHomepage()" class="back-btn-cart">Back to Homepage</button>
+        </div>
+    </section>
+
+    <section id="about-us-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="back-btn" onclick="goToHomepage()">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-about" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-about" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="about-us-content">
+            <h2>About Us</h2>
+            <img src="https://res.cloudinary.com/dyyp9nzim/image/upload/v1748862140/pq3f2tqswn6jywsp6kt5.png" alt="Grocery Shop Logo" class="logo">
+            <p>Welcome to Awn Grocery Shop, your trusted online grocery store! We started in 2020 with a mission to make grocery shopping easier, more affordable, and accessible for everyone. Our team is dedicated to sourcing the freshest products and delivering them right to your doorstep with care and efficiency.</p>
+            <p>At Awn Grocery Shop, we believe in quality, convenience, and customer satisfaction. Whether you're shopping for daily essentials or specialty items, we’ve got you covered with a wide range of categories and unbeatable offers.</p>
+
+            <h3>Our Journey</h3>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="https://res.cloudinary.com/dyyp9nzim/image/upload/v1748944344/o4kl89to77rlqwpgmudw.png" alt="Our Team">
+                    <p>Our dedicated team working together.</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://res.cloudinary.com/dyyp9nzim/image/upload/v1748944345/dgzekqvvsepgtm0dybrr.png" alt="Warehouse">
+                    <p>Our state-of-the-art warehouse ensuring fresh deliveries.</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://res.cloudinary.com/dyyp9nzim/image/upload/v1748944344/zmuldfwubren2ekduiht.png" alt="Delivery">
+                    <p>Our delivery team ensuring timely service.</p>
+                </div>
+                <div class="photo-item">
+                    <img src="https://res.cloudinary.com/dyyp9nzim/image/upload/v1748945717/ladenbevgle6gcq3pt8c.png" alt="Delivery">
+                    <p>Delivery with transportation facilities in large scale.</p>
+                </div>
+            </div>
+
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Phone: +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:support@groceryshop.com">support@awngroceryshop.com</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Corporate Office: no-12 Nehru nagar,5-th lane Anna nagar, Chennai,Tamilnadu </p>
+            </div>
+        </div>
+    </section>
+
+    <div id="alert" class="alert" style="display: none;"></div>
+
+    <!-- Add Bootstrap JS and dependencies (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
