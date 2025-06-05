@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+    <!-- Front Page -->
     <section id="front-page">
         <video autoplay muted loop id="bg-video">
             <source src="https://res.cloudinary.com/dyyp9nzim/video/upload/v1748862146/vcnr0mch3zhmj5yq4ui4.mp4" type="video/mp4">
@@ -28,6 +28,7 @@
         </div>
     </section>
 
+    <!-- Login Page -->
     <section id="login-page" style="display: none;">
         <div class="login-container">
             <h2>Login to Awn Grocery Shop</h2>
@@ -45,6 +46,7 @@
         </div>
     </section>
 
+    <!-- Homepage -->
     <section id="homepage" style="display: none;">
         <header>
             <div class="header-container">
@@ -63,6 +65,7 @@
             </div>
         </header>
 
+        <!-- Hamburger Menu -->
         <div class="sidebar" id="sidebar">
             <div class="close-btn" onclick="toggleMenu()">
                 <i class="fas fa-times"></i>
@@ -81,6 +84,7 @@
             </ul>
         </div>
 
+        <!-- New Carousel (Bootstrap Carousel) -->
         <div id="carousel1" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carousel1" data-slide-to="0" class="active"></li>
@@ -132,6 +136,7 @@
             </a>
         </div>
 
+        <!-- Categories -->
         <div class="categories">
             <h2>Shop by Category</h2>
             <div class="category-grid">
@@ -171,6 +176,7 @@
         </div>
     </section>
 
+    <!-- Category Page -->
     <section id="category-page" style="display: none;">
         <header>
             <div class="header-container">
@@ -197,6 +203,7 @@
         </div>
     </section>
 
+    <!-- Cart Page -->
     <section id="cart-page" style="display: none;">
         <header>
             <div class="header-container">
@@ -217,12 +224,252 @@
         <div class="cart">
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
-            <div id="cart-total">Total: $0</div>
-            <button onclick="proceedOrder()">Proceed to Checkout</button>
+            <div id="cart-total">Total: ₹0</div>
+            <button onclick="goToOrderSummaryPage()">Proceed to Checkout</button>
             <button onclick="goToHomepage()" class="back-btn-cart">Back to Homepage</button>
         </div>
     </section>
 
+    <!-- Order Summary Page -->
+    <section id="order-summary-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="back-btn" onclick="goToCartPage()">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-order-summary" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-order-summary" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="order-summary-items"></div>
+            <div class="order-summary-details">
+                <p><span>Subtotal:</span> <span id="order-subtotal">₹0</span></p>
+                <p><span>Delivery Charges:</span> <span id="order-delivery-charges">₹0</span></p>
+                <p><span>Discount:</span> <span id="order-discount">₹0</span></p>
+                <p class="order-total"><span>Final Total:</span> <span id="order-final-total">₹0</span></p>
+            </div>
+            <button onclick="goToDeliveryAddressPage()">Continue</button>
+        </div>
+    </section>
+
+    <!-- Delivery Address Page -->
+    <section id="delivery-address-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="back-btn" onclick="goToOrderSummaryPage()">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-delivery-address" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-delivery-address" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="delivery-address">
+            <h2>Delivery Address</h2>
+            <div class="address-details">
+                <p><strong>Name:</strong> <span id="address-name">John Doe</span></p>
+                <p><strong>Address:</strong> <span id="address-text">No-12 Nehru Nagar, 5th Lane, Anna Nagar, Chennai, Tamilnadu</span></p>
+                <p><strong>Phone:</strong> <span id="address-phone">+91 98765 43210</span></p>
+                <button class="edit-address-btn" onclick="editAddress()">Edit Address</button>
+            </div>
+            <div id="edit-address-form" style="display: none;">
+                <h3>Edit Address</h3>
+                <form id="address-form">
+                    <div class="input-group">
+                        <label for="edit-name">Name</label>
+                        <input type="text" id="edit-name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-address">Address</label>
+                        <textarea id="edit-address" placeholder="Enter your address" required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label for="edit-phone">Phone Number</label>
+                        <input type="tel" id="edit-phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <button type="submit">Save Address</button>
+                </form>
+            </div>
+            <button onclick="goToDeliveryTimePage()">Continue</button>
+        </div>
+    </section>
+
+    <!-- Delivery Time Page -->
+    <section id="delivery-time-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="back-btn" onclick="goToDeliveryAddressPage()">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-delivery-time" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-delivery-time" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="delivery-time">
+            <h2>Delivery Time</h2>
+            <div class="order-status-slider">
+                <div class="status-step completed">
+                    <i class="fas fa-check-circle"></i>
+                    <p>Dispatched</p>
+                </div>
+                <div class="status-line completed"></div>
+                <div class="status-step">
+                    <i class="fas fa-shipping-fast"></i>
+                    <p>Shipped</p>
+                </div>
+                <div class="status-line"></div>
+                <div class="status-step">
+                    <i class="fas fa-truck"></i>
+                    <p>Out for Delivery 🚚</p>
+                </div>
+            </div>
+            <div class="estimated-delivery">
+                <p><strong>Estimated Delivery:</strong> Between June 6 – June 7, 2025</p>
+            </div>
+            <div class="time-slot-selection">
+                <h3>Choose a Time Slot and Date</h3>
+                <div class="input-group">
+                    <label for="delivery-date">Delivery Date</label>
+                    <input type="date" id="delivery-date" min="2025-06-06" max="2025-06-07" required>
+                </div>
+                <div class="input-group">
+                    <label for="delivery-time-slot">Time Slot</label>
+                    <select id="delivery-time-slot" required>
+                        <option value="">Select a time slot</option>
+                        <option value="9am-12pm">9 AM - 12 PM</option>
+                        <option value="12pm-3pm">12 PM - 3 PM</option>
+                        <option value="3pm-6pm">3 PM - 6 PM</option>
+                        <option value="6pm-9pm">6 PM - 9 PM</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="goToPaymentOptionsPage()">Continue</button>
+        </div>
+    </section>
+
+    <!-- Payment Options Page -->
+    <section id="payment-options-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="back-btn" onclick="goToDeliveryTimePage()">
+                    <i class="fas fa-arrow-left"></i>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-payment-options" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-payment-options" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="payment-options">
+            <h2>Select Payment Method</h2>
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <input type="radio" id="upi" name="payment-method" value="upi" required>
+                    <label for="upi">
+                        <i class="fas fa-mobile-alt"></i> UPI (GPay, PhonePe, Paytm)
+                    </label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" id="card" name="payment-method" value="card">
+                    <label for="card">
+                        <i class="fas fa-credit-card"></i> Debit/Credit Card
+                    </label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" id="net-banking" name="payment-method" value="net-banking">
+                    <label for="net-banking">
+                        <i class="fas fa-university"></i> Net Banking
+                    </label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" id="wallet" name="payment-method" value="wallet">
+                    <label for="wallet">
+                        <i class="fas fa-wallet"></i> Wallets (Paytm, PhonePe)
+                    </label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" id="cod" name="payment-method" value="cod">
+                    <label for="cod">
+                        <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+                    </label>
+                </div>
+            </div>
+            <button onclick="processPayment()">Proceed to Pay</button>
+        </div>
+    </section>
+
+    <!-- Payment Confirmation Page -->
+    <section id="payment-confirmation-page" style="display: none;">
+        <header>
+            <div class="header-container">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="search-input-payment-confirmation" placeholder="Search products..." onkeyup="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="header-icons">
+                    <i class="fas fa-shopping-cart cart-icon" onclick="goToCartPage()">
+                        <span id="cart-counter-payment-confirmation" class="cart-counter">0</span>
+                    </i>
+                </div>
+            </div>
+        </header>
+        <div class="payment-confirmation">
+            <h2>🎉 Payment Successful!</h2>
+            <div class="confirmation-details">
+                <p><strong>Order ID:</strong> <span id="order-id"></span></p>
+                <div id="confirmation-items"></div>
+                <p><strong>Total Paid:</strong> <span id="confirmation-total">₹0</span></p>
+                <p><strong>Estimated Delivery:</strong> <span id="confirmation-delivery">Between June 6 – June 7, 2025</span></p>
+            </div>
+            <div class="confirmation-actions">
+                <button onclick="trackOrder()">Track Order</button>
+                <button onclick="downloadInvoice()">Download Invoice</button>
+                <button onclick="goToHomepage()">Back to Home</button>
+            </div>
+        </div>
+    </section> <!-- About Us Page -->
     <section id="about-us-page" style="display: none;">
         <header>
             <div class="header-container">
@@ -278,8 +525,13 @@
         </div>
     </section>
 
+    <!-- Alert -->
     <div id="alert" class="alert" style="display: none;"></div>
-     <script src="script.js"></script>
+
+    <!-- Audio for Payment Confirmation -->
+    <audio id="payment-success-audio" src="https://res.cloudinary.com/dyyp9nzim/video/upload/v1749005139/success-340660_xmisg4.mp3"></audio>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
