@@ -95,7 +95,7 @@ const products = {
             name: 'Cheese 1-pc',
             price: 250,
             offer: '20% Off',
-            image: 'https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1200-1200,pr-true,f-auto,q-80/cms/product_variant/263afa34-4e15-4e5d-b891-d3126b1b3019/Amul-Cheese-Slices.jpeg',
+            image: 'https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1200-1200,pr-true,f-auto,q-80/cms/product_variant/e5a4d2d8-29fb-48a3-b922-4a410de75143/Amul-Processed-Cheese-Cubes.jpeg',
             rating: 4.5
         },
         {
