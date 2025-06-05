@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +12,7 @@ body {
     color: #333333;
 }
 
+/* Front Page */
 #front-page {
     position: relative;
     height: 100vh;
@@ -78,6 +78,7 @@ body {
     background-color: #388E3C;
 }
 
+/* Login Page */
 #login-page {
     height: 100vh;
     display: flex;
@@ -112,7 +113,18 @@ body {
     color: #555;
 }
 
-#login-form input {
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    resize: vertical;
+}
+
+#login-form input,
+#address-form input,
+#address-form textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
@@ -120,7 +132,8 @@ body {
     font-size: 1em;
 }
 
-#login-form button {
+#login-form button,
+#address-form button {
     width: 100%;
     padding: 12px;
     background-color: #4CAF50;
@@ -132,10 +145,12 @@ body {
     transition: background-color 0.3s;
 }
 
-#login-form button:hover {
+#login-form button:hover,
+#address-form button:hover {
     background-color: #388E3C;
 }
 
+/* Header */
 header {
     background: #4CAF50;
     padding: 10px 20px;
@@ -280,6 +295,7 @@ header {
     color: #FFFFFF;
 }
 
+/* New Bootstrap Carousel Styles */
 .carousel {
     width: 100%;
     margin: 20px 0;
@@ -311,6 +327,7 @@ header {
     padding: 20px;
 }
 
+/* Categories */
 .categories {
     padding: 40px 10px;
     text-align: center;
@@ -376,6 +393,7 @@ header {
     font-size: 1.1em;
 }
 
+/* Category Page */
 .category-products {
     padding: 40px 20px;
     max-width: 1200px;
@@ -458,6 +476,7 @@ header {
     background-color: #388E3C;
 }
 
+/* Cart Page */
 .cart {
     padding: 40px 20px;
     max-width: 1200px;
@@ -542,6 +561,362 @@ header {
     background-color: #555;
 }
 
+/* Order Summary Page */
+.order-summary {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #C8E6C9;
+}
+
+.order-summary h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+#order-summary-items .cart-item {
+    margin-bottom: 15px;
+}
+
+.order-summary-details {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.order-summary-details p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.order-summary-details .order-total {
+    font-weight: bold;
+    color: #4CAF50;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.order-summary button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.order-summary button:hover {
+    background-color: #388E3C;
+}
+
+/* Delivery Address Page */
+.delivery-address {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #C8E6C9;
+}
+
+.delivery-address h2,
+.delivery-address h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.address-details {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.address-details p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.edit-address-btn {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.edit-address-btn:hover {
+    background-color: #388E3C;
+}
+
+#edit-address-form {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.delivery-address button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.delivery-address button:hover {
+    background-color: #388E3C;
+}
+
+/* Delivery Time Page */
+.delivery-time {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #C8E6C9;
+}
+
+.delivery-time h2,
+.delivery-time h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.order-status-slider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.status-step {
+    text-align: center;
+    flex: 1;
+}
+
+.status-step i {
+    font-size: 2em;
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.status-step.completed i {
+    color: #4CAF50;
+}
+
+.status-step p {
+    font-size: 1em;
+    color: #333333;
+}
+
+.status-line {
+    flex: 1;
+    height: 2px;
+    background: #ccc;
+    margin: 0 10px;
+    position: relative;
+    top: -10px;
+}
+
+.status-line.completed {
+    background: #4CAF50;
+}
+
+.estimated-delivery {
+    background: #FFFFFF;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.estimated-delivery p {
+    font-size: 1.1em;
+    color: #333333;
+}
+
+.time-slot-selection {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.time-slot-selection .input-group {
+    margin-bottom: 15px;
+}
+
+.time-slot-selection select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.delivery-time button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.delivery-time button:hover {
+    background-color: #388E3C;
+}
+
+/* Payment Options Page */
+.payment-options {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #C8E6C9;
+}
+
+.payment-options h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.payment-methods {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.payment-method:last-child {
+    border-bottom: none;
+}
+
+.payment-method input[type="radio"] {
+    margin-right: 15px;
+}
+
+.payment-method label {
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+    color: #333333;
+    cursor: pointer;
+}
+
+.payment-method i {
+    margin-right: 10px;
+    color: #4CAF50;
+    font-size: 1.2em;
+}
+
+.payment-options button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.payment-options button:hover {
+    background-color: #388E3C;
+}
+
+/* Payment Confirmation Page */
+.payment-confirmation {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #C8E6C9;
+    text-align: center;
+}
+
+.payment-confirmation h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #4CAF50;
+}
+
+.confirmation-details {
+    background: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.confirmation-details p {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+#confirmation-items .cart-item {
+    margin-bottom: 15px;
+}
+
+.confirmation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.confirmation-actions button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.confirmation-actions button:nth-child(2) {
+    background-color: #FF9800;
+}
+
+.confirmation-actions button:nth-child(2):hover {
+    background-color: #F57C00;
+}
+
+.confirmation-actions button:hover {
+    background-color: #388E3C;
+}
+
+/* About Us Page */
 .about-us-content {
     padding: 40px 20px;
     max-width: 1200px;
@@ -611,6 +986,7 @@ header {
     text-decoration: underline;
 }
 
+/* Alert */
 .alert {
     position: fixed;
     top: 20px;
@@ -622,7 +998,7 @@ header {
     z-index: 1000;
 }
 
-
+/* Responsive Design */
 @media (min-width: 1024px) {
     .category-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -640,6 +1016,10 @@ header {
 
     .photo-item img {
         height: 200px;
+    }
+
+    .order-status-slider {
+        flex-direction: row;
     }
 }
 
@@ -660,6 +1040,10 @@ header {
 
     .photo-item img {
         height: 180px;
+    }
+
+    .order-status-slider {
+        flex-direction: row;
     }
 }
 
@@ -700,6 +1084,17 @@ header {
 
     .photo-item img {
         height: 150px;
+    }
+
+    .order-status-slider {
+        flex-direction: column;
+    }
+
+    .status-line {
+        height: 40px;
+        width: 2px;
+        margin: 10px 0;
+        top: 0;
     }
 }
 
