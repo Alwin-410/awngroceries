@@ -1,4 +1,4 @@
-
+// Sample product data with 4-5 items per category and ratings
 const products = {
     'Grains & Staples': [{
             id: 1,
@@ -95,7 +95,7 @@ const products = {
             name: 'Cheese 1-pc',
             price: 250,
             offer: '20% Off',
-            image: 'https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1200-1200,pr-true,f-auto,q-80/cms/product_variant/263afa34-4a15-4e5d-b891-d3126b1b3019/Amul-Cheese-Slices.jpeg',
+            image: 'https://cdn.zeptonow.com/production/ik-seo/tr:w-640,ar-1200-1200,pr-true,f-auto,q-80/cms/product_variant/263afa34-4e15-4e5d-b891-d3126b1b3019/Amul-Cheese-Slices.jpeg',
             rating: 4.5
         },
         {
@@ -332,7 +332,9 @@ const products = {
 
 let cart = [];
 let currentCategory = '';
+let orderDetails = {};
 
+// Navigation
 function goToLogin() {
     document.getElementById('front-page').style.display = 'none';
     document.getElementById('login-page').style.display = 'flex';
@@ -340,6 +342,11 @@ function goToLogin() {
     document.getElementById('category-page').style.display = 'none';
     document.getElementById('cart-page').style.display = 'none';
     document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
     document.getElementById('sidebar').classList.remove('active');
 }
 
@@ -349,33 +356,52 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
     document.getElementById('homepage').style.display = 'block';
 });
 
+// Back Button Navigation
 function goToHomepage() {
     document.getElementById('category-page').style.display = 'none';
     document.getElementById('homepage').style.display = 'block';
     document.getElementById('cart-page').style.display = 'none';
     document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
     document.getElementById('sidebar').classList.remove('active');
 }
 
+// About Us Navigation
 function goToAboutUsPage() {
     document.getElementById('homepage').style.display = 'none';
     document.getElementById('category-page').style.display = 'none';
     document.getElementById('cart-page').style.display = 'none';
     document.getElementById('about-us-page').style.display = 'block';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
     document.getElementById('sidebar').classList.remove('active');
 }
 
+// Hamburger Menu
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('active');
 }
 
+// Update Cart Counter
 function updateCartCounter() {
     const counters = [
         document.getElementById('cart-counter'),
         document.getElementById('cart-counter-cat'),
         document.getElementById('cart-counter-cart'),
-        document.getElementById('cart-counter-about')
+        document.getElementById('cart-counter-about'),
+        document.getElementById('cart-counter-order-summary'),
+        document.getElementById('cart-counter-delivery-address'),
+        document.getElementById('cart-counter-delivery-time'),
+        document.getElementById('cart-counter-payment-options'),
+        document.getElementById('cart-counter-payment-confirmation')
     ];
     const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
     counters.forEach(counter => {
@@ -383,6 +409,7 @@ function updateCartCounter() {
     });
 }
 
+// Search Functionality
 function searchProducts() {
     const query = document.querySelector('input[type="text"]:not([style*="display: none"])').value.toLowerCase();
     if (!query) {
@@ -425,12 +452,18 @@ function searchProducts() {
     }
 }
 
+// Category Page
 function goToCategoryPage(category) {
     currentCategory = category;
     document.getElementById('homepage').style.display = 'none';
     document.getElementById('category-page').style.display = 'block';
     document.getElementById('cart-page').style.display = 'none';
     document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
     document.getElementById('sidebar').classList.remove('active');
     showCategory(category);
 }
@@ -459,6 +492,7 @@ function showCategory(category) {
     });
 }
 
+// Cart Functionality
 function addToCart(id, name, price, image) {
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
@@ -496,6 +530,11 @@ function goToCartPage() {
     document.getElementById('category-page').style.display = 'none';
     document.getElementById('cart-page').style.display = 'block';
     document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
     document.getElementById('sidebar').classList.remove('active');
     updateCart();
 }
@@ -519,17 +558,218 @@ function updateCart() {
     document.getElementById('cart-total').textContent = `Total: ₹${total}`;
 }
 
-function proceedOrder() {
-    if (cart.length > 0) {
-        showAlert('Order successful! Thank you for shopping.');
-        cart = [];
-        updateCartCounter();
-        updateCart();
-    } else {
+// Order Summary Page
+function goToOrderSummaryPage() {
+    if (cart.length === 0) {
         showAlert('Your cart is empty!');
+        return;
     }
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('category-page').style.display = 'none';
+    document.getElementById('cart-page').style.display = 'none';
+    document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'block';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
+    document.getElementById('sidebar').classList.remove('active');
+    updateOrderSummary();
 }
 
+function updateOrderSummary() {
+    const orderSummaryItemsDiv = document.getElementById('order-summary-items');
+    orderSummaryItemsDiv.innerHTML = '';
+    let subtotal = 0;
+    cart.forEach(item => {
+        const itemTotal = item.price * (item.quantity || 1);
+        subtotal += itemTotal;
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <p>${item.name} - ₹${item.price} x ${item.quantity || 1} = ₹${itemTotal}</p>
+        `;
+        orderSummaryItemsDiv.appendChild(cartItem);
+    });
+
+    const deliveryCharges = subtotal < 500 ? 50 : 0; // Free delivery for orders above ₹500
+    const discount = calculateDiscount(subtotal); // Example discount logic
+    const finalTotal = subtotal + deliveryCharges - discount;
+
+    document.getElementById('order-subtotal').textContent = `₹${subtotal}`;
+    document.getElementById('order-delivery-charges').textContent = `₹${deliveryCharges}`;
+    document.getElementById('order-discount').textContent = `₹${discount}`;
+    document.getElementById('order-final-total').textContent = `₹${finalTotal}`;
+
+    // Store order details for later use
+    orderDetails = {
+        items: [...cart],
+        subtotal,
+        deliveryCharges,
+        discount,
+        finalTotal
+    };
+}
+
+function calculateDiscount(subtotal) {
+    // Example: 10% discount for orders above ₹1000
+    if (subtotal > 1000) {
+        return Math.round(subtotal * 0.1);
+    }
+    return 0;
+}
+
+// Delivery Address Page
+function goToDeliveryAddressPage() {
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('category-page').style.display = 'none';
+    document.getElementById('cart-page').style.display = 'none';
+    document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'block';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
+    document.getElementById('sidebar').classList.remove('active');
+    loadAddress();
+}
+
+function loadAddress() {
+    // Load address from localStorage or use default
+    const savedAddress = JSON.parse(localStorage.getItem('deliveryAddress')) || {
+        name: 'John Doe',
+        address: 'No-12 Nehru Nagar, 5th Lane, Anna Nagar, Chennai, Tamilnadu',
+        phone: '+91 98765 43210'
+    };
+    document.getElementById('address-name').textContent = savedAddress.name;
+    document.getElementById('address-text').textContent = savedAddress.address;
+    document.getElementById('address-phone').textContent = savedAddress.phone;
+
+    // Pre-fill the edit form
+    document.getElementById('edit-name').value = savedAddress.name;
+    document.getElementById('edit-address').value = savedAddress.address;
+    document.getElementById('edit-phone').value = savedAddress.phone;
+}
+
+function editAddress() {
+    const editForm = document.getElementById('edit-address-form');
+    editForm.style.display = editForm.style.display === 'none' ? 'block' : 'none';
+}
+
+document.getElementById('address-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newAddress = {
+        name: document.getElementById('edit-name').value,
+        address: document.getElementById('edit-address').value,
+        phone: document.getElementById('edit-phone').value
+    };
+    localStorage.setItem('deliveryAddress', JSON.stringify(newAddress));
+    loadAddress();
+    document.getElementById('edit-address-form').style.display = 'none';
+    showAlert('Address updated successfully!');
+});
+// Delivery Time Page
+function goToDeliveryTimePage() {
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('category-page').style.display = 'none';
+    document.getElementById('cart-page').style.display = 'none';
+    document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'block';
+    document.getElementById('payment-options-page').style.display = 'none';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
+    document.getElementById('sidebar').classList.remove('active');
+}
+
+// Payment Options Page
+function goToPaymentOptionsPage() {
+    const deliveryDate = document.getElementById('delivery-date').value;
+    const timeSlot = document.getElementById('delivery-time-slot').value;
+    if (!deliveryDate || !timeSlot) {
+        showAlert('Please select a delivery date and time slot!');
+        return;
+    }
+    orderDetails.deliveryDate = deliveryDate;
+    orderDetails.timeSlot = timeSlot;
+
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('category-page').style.display = 'none';
+    document.getElementById('cart-page').style.display = 'none';
+    document.getElementById('about-us-page').style.display = 'none';
+    document.getElementById('order-summary-page').style.display = 'none';
+    document.getElementById('delivery-address-page').style.display = 'none';
+    document.getElementById('delivery-time-page').style.display = 'none';
+    document.getElementById('payment-options-page').style.display = 'block';
+    document.getElementById('payment-confirmation-page').style.display = 'none';
+    document.getElementById('sidebar').classList.remove('active');
+}
+
+// Payment Confirmation Page
+function processPayment() {
+    const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked');
+    if (!selectedPaymentMethod) {
+        showAlert('Please select a payment method!');
+        return;
+    }
+
+    orderDetails.paymentMethod = selectedPaymentMethod.value;
+
+    // Simulate payment processing
+    setTimeout(() => {
+        document.getElementById('homepage').style.display = 'none';
+        document.getElementById('category-page').style.display = 'none';
+        document.getElementById('cart-page').style.display = 'none';
+        document.getElementById('about-us-page').style.display = 'none';
+        document.getElementById('order-summary-page').style.display = 'none';
+        document.getElementById('delivery-address-page').style.display = 'none';
+        document.getElementById('delivery-time-page').style.display = 'none';
+        document.getElementById('payment-options-page').style.display = 'none';
+        document.getElementById('payment-confirmation-page').style.display = 'block';
+        document.getElementById('sidebar').classList.remove('active');
+
+        // Generate Order ID
+        const orderId = 'AWN' + Date.now();
+        document.getElementById('order-id').textContent = orderId;
+
+        // Display Items
+        const confirmationItemsDiv = document.getElementById('confirmation-items');
+        confirmationItemsDiv.innerHTML = '';
+        orderDetails.items.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <p>${item.name} - ₹${item.price} x ${item.quantity || 1}</p>
+            `;
+            confirmationItemsDiv.appendChild(cartItem);
+        });
+
+        // Display Total
+        document.getElementById('confirmation-total').textContent = `₹${orderDetails.finalTotal}`;
+
+        // Play Success Audio
+        const audio = document.getElementById('payment-success-audio');
+        audio.play();
+
+        // Clear Cart
+        cart = [];
+        updateCartCounter();
+
+        showAlert('Payment successful! Thank you for shopping.');
+    }, 1000); // Simulate a 1-second payment process
+}
+
+function trackOrder() {
+    showAlert('Tracking feature coming soon!');
+}
+
+function downloadInvoice() {
+    showAlert('Invoice download feature coming soon!');
+}
+
+// Alert
 function showAlert(message) {
     const alertDiv = document.getElementById('alert');
     alertDiv.textContent = message;
